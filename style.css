@@ -1,6 +1,9 @@
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -10,7 +13,7 @@ html, body {
 }
 
 .header {
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
     color: white;
     padding: 25px;
     text-align: center;
@@ -36,11 +39,12 @@ html, body {
     padding: 15px;
     margin: 15px 0;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     page-break-inside: avoid;
 }
 
-.issue h3, .issue p {
+.issue h3,
+.issue p {
     word-break: break-word;
 }
 
@@ -63,25 +67,46 @@ button {
     font-size: 12px;
 }
 
-.add-btn { background: #ef6c00; color: white; }
-.delete-btn { background: #c62828; color: white; }
-.print-btn { background: #2e7d32; color: white; }
-.download-btn { background: black; color: white; }
+.add-btn {
+    background: #ef6c00;
+    color: white;
+}
 
-select { padding: 4px; }
+.delete-btn {
+    background: #c62828;
+    color: white;
+}
+
+.print-btn {
+    background: #2e7d32;
+    color: white;
+}
+
+.download-btn {
+    background: black;
+    color: white;
+}
+
+select {
+    padding: 4px;
+}
 
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 8px;
     border: 1px solid #ccc;
     text-align: center;
 }
 
-th { background: #1565c0; color: white; }
+th {
+    background: #1565c0;
+    color: white;
+}
 
 .summary-box {
     background: white;
@@ -90,12 +115,59 @@ th { background: #1565c0; color: white; }
 }
 
 @media print {
-    body { background: white; color: black; }
-    .header { background: none; color: black; padding: 10px 0; border-bottom: 2px solid black; }
-    .issue { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
-    button, input[type="text"] { display: none !important; }
-    .section-title { background: #1565c0 !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    th { background: #1565c0 !important; color: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    select { border: none; appearance: none; -webkit-appearance: none; -moz-appearance: none; padding: 0; margin: 0; font-weight: bold; background: transparent; }
-    .image-section img { border: 1px solid #aaa; page-break-inside: avoid; max-height: 400px; }
+    body {
+        background: white;
+        color: black;
+    }
+
+    .header {
+        background: none;
+        color: black;
+        padding: 10px 0;
+        border-bottom: 2px solid black;
+    }
+
+    .issue {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+
+    button,
+    input[type="text"],
+    input[type="file"],
+    label {
+        display: none !important;
+    }
+
+    .section-title {
+        background: #1565c0 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    th {
+        background: #1565c0 !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    select {
+        border: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        background: transparent;
+    }
+
+    .image-section img {
+        border: 1px solid #aaa;
+        page-break-inside: avoid;
+        max-height: 400px;
+    }
 }
