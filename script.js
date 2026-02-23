@@ -114,7 +114,7 @@ function updateImage(input) {
     const path = input.value.trim();
     if (!img) return;
     img.src = path;
-    img.style.display = path ? 'block' : 'none';
+    img.style.display = (path && path !== "") ? 'block' : 'none';
     if (window.isAppLoaded) saveState();
 }
 
@@ -131,7 +131,7 @@ function handleImageUpload(input) {
 
         if (img) {
             img.src = base64;
-            img.style.display = 'block';
+            img.style.display = (base64 && base64 !== "") ? 'block' : 'none';
         }
         if (pathInput) {
             pathInput.value = ""; // Clear path input if we have a file
@@ -289,7 +289,7 @@ function downloadFinal() {
                         <div class="issue">
                                 <h3>${idx + 1}. ${escapeHtml(it.title)}</h3>
                                 <p>${escapeHtml(it.desc)}</p>
-                                ${it.img ? `<div class="image-section"><img src="${escapeHtml(it.img)}" style="max-width:100%;"></div>` : ''}
+                                ${it.img && it.img !== "" ? `<div class="image-section"><img src="${escapeHtml(it.img)}" style="max-width:100%;"></div>` : ''}
                                 <br>Status: <span style="font-weight:bold;">${escapeHtml(it.status)}</span>
                         </div>
                 `;
@@ -365,8 +365,8 @@ function saveState() {
         let sel = el.querySelector('select');
         const status = sel ? sel.value : 'Not Resolved';
         let imgEl = el.querySelector('img');
-        const img = imgEl ? imgEl.src : '';
-        issues.push({ title, desc, status, img });
+        const img = imgEl ? imgEl.getAttribute('src') : '';
+        issues.push({ title, desc, status, img: (img && img !== "null") ? img : "" });
     });
 
     localStorage.setItem('uatHeaderTitle', headerTitle);
