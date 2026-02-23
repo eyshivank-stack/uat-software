@@ -1,3 +1,4 @@
+// VERSION: 1.0.4 - Updated at 2026-02-23 20:45
 // ==========================
 // ISSUE DATA (ALL 32) - full text updated per user report
 // ==========================
