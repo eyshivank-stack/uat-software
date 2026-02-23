@@ -75,10 +75,14 @@ function addIssue(title, desc, status, imgPath) {
         <p contenteditable="true">${desc}</p>
 
         <div class="image-section">
+            <label style="font-weight:bold; font-size:11px;">Path/URL:</label>
             <input type="text"
                    placeholder="Enter image path (e.g. images/issue1.png)"
                    value="${imgPath}"
                    onchange="updateImage(this)">
+            <br>
+            <label style="font-weight:bold; font-size:11px;">Or Upload:</label>
+            <input type="file" accept="image/*" onchange="handleImageUpload(this)">
             <br>
             <img src="${imgPath}" style="display:${imgPath ? 'block' : 'none'}; max-width:100%;">
         </div>
@@ -111,6 +115,30 @@ function updateImage(input) {
     if (!img) return;
     img.src = path;
     img.style.display = path ? 'block' : 'none';
+    if (window.isAppLoaded) saveState();
+}
+
+function handleImageUpload(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const base64 = e.target.result;
+        const imgSection = input.closest('.image-section');
+        const img = imgSection.querySelector('img');
+        const pathInput = imgSection.querySelector('input[type="text"]');
+
+        if (img) {
+            img.src = base64;
+            img.style.display = 'block';
+        }
+        if (pathInput) {
+            pathInput.value = ""; // Clear path input if we have a file
+        }
+        if (window.isAppLoaded) saveState();
+    };
+    reader.readAsDataURL(file);
 }
 
 function deleteIssue(btn) {
@@ -336,8 +364,8 @@ function saveState() {
         const desc = p ? p.innerText : '';
         let sel = el.querySelector('select');
         const status = sel ? sel.value : 'Not Resolved';
-        let inp = el.querySelector('input');
-        const img = inp ? inp.value : '';
+        let imgEl = el.querySelector('img');
+        const img = imgEl ? imgEl.src : '';
         issues.push({ title, desc, status, img });
     });
 
